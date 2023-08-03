@@ -121,6 +121,88 @@ const Upload = () => {
   return (
 
 
+
+    <div className="bgcolor" style={{ backgroundColor: '#f0f0f0' }}>
+    <Box height={90} />
+    <Box sx={{ display: 'flex' }}>
+    <DrawerList />
+      <Grid container justifyContent="center">
+        <Paper elevation={6} style={paperStyle} className="file-container">
+          <Stack direction="column" spacing={5}>
+            {/* The file upload and drag and drop area */}
+            <div
+              onDragEnter={handleDragEnter}
+              onDragLeave={handleDragLeave}
+              onDragOver={handleDragOver}
+              onDrop={handleDrop}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                width: '620px',
+                minHeight: '200px',
+                fontFamily: 'sans-serif',
+                backgroundColor: dragging ? '#e0e0e0' : 'transparent', // Change background color when dragging
+                border: dragging ? '2px dashed #1e88e5' : 'none', // Add dashed border when dragging
+              }}
+            >
+              <FontAwesomeIcon
+                icon={faCloudArrowUp}
+                fade
+                size="2x"
+                style={{ color: '#21b6ae', height: '90px' }}
+              />
+              <br />
+              <div style={{ fontWeight: 'bold' }}>Drag & drop a file here or</div>
+              <Button
+                variant="text"
+                //color="primary"
+                style={{color:"#21b6ae"}}
+                component="label"
+                sx={{ mr: 2, display: 'flex' }}
+              >
+                Browse
+                <input type="file" style={{ display: 'none' }} onChange={handleFileChange} />
+              </Button>
+              <div style={{ color: 'gray' }}>
+                <p>Supported formats: XLSX, CSV</p>
+              </div>
+            </div>
+            {/* End of file upload and drag and drop area */}
+            <Button
+              variant="contained"
+              component="label"
+              color="primary"
+              style={{ height: '60px', backgroundColor:"#21b6ae" }}
+              onClick={handleNextClick}
+            >
+              <Typography variant="h5" align="center" fontWeight={'medium'}>
+                Next
+              </Typography>
+            </Button>
+          </Stack>
+        </Paper>
+      </Grid>
+    </Box>
+    {showErrorAlert && (
+      <Stack sx={{ width: '30%', ml: 20 }} spacing={3}>
+        <Alert onClose={() => setShowErrorAlert(false)} variant="filled" severity="error">
+          Please upload a file!
+        </Alert>
+      </Stack>
+    )}
+  </div>
+
+   );
+}
+export default Upload;
+
+
+
+
+
 //     <div className='container' style={{ backgroundColor: '#f0f0f0', height:1000+'px' }}>
 // <NavBar />
 // <Box height={200+'px'}  />
@@ -217,88 +299,6 @@ const Upload = () => {
     //     </Stack>
     //   )}
     // </div>
-
-    <div className="bgcolor" style={{ backgroundColor: '#f0f0f0' }}>
-    <Box height={90} />
-    <Box sx={{ display: 'flex' }}>
-    <DrawerList />
-      <Grid container justifyContent="center">
-        <Paper elevation={6} style={paperStyle} className="file-container">
-          <Stack direction="column" spacing={5}>
-            {/* The file upload and drag and drop area */}
-            <div
-              onDragEnter={handleDragEnter}
-              onDragLeave={handleDragLeave}
-              onDragOver={handleDragOver}
-              onDrop={handleDrop}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                width: '620px',
-                minHeight: '200px',
-                fontFamily: 'sans-serif',
-                backgroundColor: dragging ? '#e0e0e0' : 'transparent', // Change background color when dragging
-                border: dragging ? '2px dashed #1e88e5' : 'none', // Add dashed border when dragging
-              }}
-            >
-              <FontAwesomeIcon
-                icon={faCloudArrowUp}
-                fade
-                size="2x"
-                style={{ color: '#21b6ae', height: '90px' }}
-              />
-              <br />
-              <div style={{ fontWeight: 'bold' }}>Drag & drop a file here or</div>
-              <Button
-                variant="text"
-                //color="primary"
-                style={{color:"#21b6ae"}}
-                component="label"
-                sx={{ mr: 2, display: 'flex' }}
-              >
-                Browse
-                <input type="file" style={{ display: 'none' }} onChange={handleFileChange} />
-              </Button>
-              <div style={{ color: 'gray' }}>
-                <p>Supported formats: XLSX, CSV</p>
-              </div>
-            </div>
-            {/* End of file upload and drag and drop area */}
-            <Button
-              variant="contained"
-              component="label"
-              color="primary"
-              style={{ height: '60px', backgroundColor:"#21b6ae" }}
-              onClick={handleNextClick}
-            >
-              <Typography variant="h5" align="center" fontWeight={'medium'}>
-                Next
-              </Typography>
-            </Button>
-          </Stack>
-        </Paper>
-      </Grid>
-    </Box>
-    {showErrorAlert && (
-      <Stack sx={{ width: '30%', ml: 20 }} spacing={3}>
-        <Alert onClose={() => setShowErrorAlert(false)} variant="filled" severity="error">
-          Please upload a file!
-        </Alert>
-      </Stack>
-    )}
-  </div>
-
-   );
-}
-export default Upload;
-
-
-
-
-
 
 
 
